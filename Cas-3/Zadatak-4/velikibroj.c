@@ -22,7 +22,7 @@ void ispis(VelikiBroj b, FILE* g) {
     for (i = 0; i < b.duz; i++)
         fprintf(g, "%d", b.niz[i]);
 }
-
+//ako su razlicite duzine vraca 1, ako su iste duzine a razliciti vraca -1 i 0 ako su isti
 int poredi(VelikiBroj a, VelikiBroj b) {
     int i;
     if (a.duz > b.duz || a.duz < b.duz) return 1;
