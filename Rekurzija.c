@@ -446,7 +446,7 @@ int skalar_proiz(int niz1[MAX], int niz2[MAX], int n) {
 #include<stdio.h>
 #define MAX 100
 
-int crtanje(int n, int raz);
+void crtanje(int n, int raz);
 
 int main() {
 
@@ -463,7 +463,7 @@ int main() {
 
 }
 
-int crtanje(int n, int raz) {
+void crtanje(int n, int raz) {
     int i;
 
     if (n == 1) {
