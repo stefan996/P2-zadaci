@@ -22,12 +22,12 @@ int crtanje(int n, int raz) {
     int i;
 
     if (n == 1) {
-        for (i = 0; i < raz; i++)printf(".");
+        for (i = 0; i < raz; i++)printf(" ");
         printf("+");
     } else {
         crtanje(n - 1, raz + 1);
         printf("\n");
-        for (i = 0; i < raz; i++)printf(".");
+        for (i = 0; i < raz; i++)printf(" ");
         for (i = 0; i < n; i++)printf("+");
     }
 }
