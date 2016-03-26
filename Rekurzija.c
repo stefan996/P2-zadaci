@@ -242,7 +242,7 @@ int main() {
 
 }*/
 
-//ZADATAK 8
+//ZADATAK 8 - nismo radili alokaciju
 
 //ZADATAK 9
 /*
@@ -439,14 +439,73 @@ int skalar_proiz(int niz1[MAX], int niz2[MAX], int n) {
 }*/
 
 //ZADATAK 14
+/*
+#include<stdio.h>
+
+int prost1(int n, int i) {
+    if (i == 1)
+        return 1;
+
+    else {
+        if (n % i == 0)
+            return 0;
+        else
+            return prost1(n, i - 1);
+    }
+}
+
+int prost(int n) {
+
+    return prost1(n, n / 2);
+}
+
+int main() {
+
+    int n, id;
+    printf("Unesite broj:\n");
+    scanf("%d", &n);
+
+    id = prost(n);
+
+    if (id)
+        printf("Broj je prost!\n");
+    else
+        printf("Broj nije prost!\n");
+
+    return 0;
+}*/
+
 //ZADATAK 15
+/*
+#include<stdio.h>
+
+void suma(int n, int *s);
+
+int main() {
+    int n, s = 0;
+    printf("Unesite broj:\n");
+    scanf("%d", &n);
+    suma(n, &s);
+    printf("%d", s);
+    return 0;
+}
+
+void suma(int n, int *s) {
+    static int a = n;
+    if (n == 1)
+        *s += 1;
+    else {
+        suma(n - 1, s);
+        if (a % n == 0) *s += n;
+    }
+}*/
 
 //ZADATAK 16
 /*
 #include<stdio.h>
 #define MAX 100
 
-void crtanje(int n, int raz);
+int crtanje(int n, int raz);
 
 int main() {
 
@@ -463,7 +522,7 @@ int main() {
 
 }
 
-void crtanje(int n, int raz) {
+int crtanje(int n, int raz) {
     int i;
 
     if (n == 1) {
@@ -478,3 +537,219 @@ void crtanje(int n, int raz) {
 }*/
 
 //ZADATAK 17
+/*
+#include<stdio.h>
+
+int bin_koef(int n, int k);
+
+int main() {
+    int n, k;
+    printf("Unesite broj n i k:\n");
+    scanf("%d%d", &n, &k);
+    if (k < 0)printf("0\n");
+    printf("%d", bin_koef(n, k));
+    return 0;
+}
+
+int bin_koef(int n, int k) {
+    if (k == 1)
+        return n;
+    else
+        return (n + 1 - k) * bin_koef(n, k - 1) / k;
+}*/
+
+//ZADATAK 18 XXX ne znam sta mi traze
+
+//ZADATAK 19 - nismo radili repnu
+
+//ZADATAK 20
+/*
+#include<stdio.h>
+#define max 100
+
+void niz(int n, int t[max]);
+
+int main() {
+    int n, i, t[max], k = 1;
+    printf("Unesite broj n:\n");
+    scanf("%d", &n);
+    printf("Unesite niz:\n");
+    for (i = 0; i < n; i++)
+        scanf("%d", &t[i]);
+    niz(n, t);
+    for (i = 0; i < n; i++)
+        printf("%d ", t[i]);
+    return 0;
+}
+
+void niz(int n, int t[max]) {
+    if (n == 1)
+        t[0] += 1;
+    else {
+        niz(n - 1, t);
+        t[n - 1] += n;
+    }
+}*/
+
+//ZADATAK 21
+/*
+#include<stdio.h>
+
+int nzd(int n, int m);
+
+int main() {
+    int n, m;
+    printf("Unesite broj n i m:\n");
+    scanf("%d%d", &n, &m);
+    printf("NZD je:%d\n", nzd(n, m));
+    return 0;
+}
+
+int nzd(int n, int m) {
+    if (n % m == 0)
+        return m;
+    else
+        nzd(m, n % m);
+}*/
+
+//ZADATAK 22
+/*
+#include<stdio.h>
+
+int fib(int n);
+
+int main() {
+    int n, m;
+    printf("Unesite broj n:\n");
+    scanf("%d", &n);
+    if (n == 0)printf("0\n");
+    printf("%d. clan Fibonacijevog niza je: %d\n", n, fib(n));
+    return 0;
+}
+
+int fib(int n) {
+    if (n == 2 || n == 1)
+        return 1;
+    else
+        return fib(n - 1) + fib(n - 2);
+}*/
+
+//ZADATAK 23
+/*
+#include<stdio.h>
+#include<math.h>
+
+void podbroj(int n, int d);
+
+int main() {
+    int n, d;
+    printf("Unesite broj n i d:\n");
+    scanf("%d%d", &n, &d);
+    podbroj(n, d);
+    return 0;
+}
+
+void podbroj(int n, int d) {
+    if (n < pow(10, d))
+        printf("%d ", n);
+    else {
+        printf("%d ", n % (int) pow(10, d));
+        n /= 10;
+        podbroj(n, d);
+    }
+}*/
+
+//ZADATAK 24
+/*
+#include<stdio.h>
+#define MAX 100
+
+int uzastopni(int n, int* niz, int a, int b, int c);
+
+int main() {
+    int n, i, a, b, c, niz[MAX];
+    
+    printf("Unesite broj n:\n");
+    scanf("%d", &n);
+    
+    printf("Uneti niz:\n");
+    for (i = 0; i < n; i++)
+        scanf("%d", &niz[i]);
+    
+    printf("Unesite tri broja:\n");
+    scanf("%d%d%d", &a, &b, &c);
+    
+    if (uzastopni(n, niz, a, b, c))
+        printf("Jesu!");
+    else
+        printf("Nisu!");
+    
+    return 0;
+}
+
+int uzastopni(int n, int* niz, int a, int b, int c) {
+    if (n < 3) return 0;
+    else if (niz[n - 1] == c && niz[n - 2] == b && niz[n - 3] == a)
+        return 1;
+    else
+        return uzastopni(n - 1, niz, a, b, c);
+}*/
+
+//ZADATAK 25
+/*
+#include<stdio.h>
+
+int izbaci(int n);
+
+int main() {
+    int n;
+    printf("Unesite broj n:\n");
+    scanf("%d", &n);
+    printf("%d\n", izbaci(n));
+    return 0;
+}
+
+int izbaci(int n) {
+    if (n < 100)
+        return n % 10;
+    else
+        return izbaci(n / 100)*10 + n % 10;
+}*/
+
+//ZADATAK 26
+/*
+#include<stdio.h>
+#include<stdlib.h>
+
+int f(int a, int b);
+
+int main() {
+    int a, b;
+    FILE *g = fopen("rez.txt", "w");
+
+    if (g == NULL) {
+        printf("Greska!");
+        exit(0);
+    }
+
+    printf("Unesite brojeve a i b:\n");
+    scanf("%d%d", &a, &b);
+
+    fprintf(g, "%d", f(a, b));
+    fclose(g);
+
+    return 0;
+}
+
+int f(int a, int b) {
+    if (a == 0 && b == 0)
+        return 1;
+    else if (a < 0 && b >= 0)
+        return -f(-a, b);
+    else if (a >= 0 && b < 0)
+        return -f(a, -b);
+    else if (a < 0 && b < 0)
+        return f(-a, -b);
+    else
+        return f(b, a - 1) + 2;
+}*/
