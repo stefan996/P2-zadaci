@@ -10,6 +10,11 @@ int main() {
     printf("Unesi x, p, n:\n");
     scanf("%d%d%d", &x, &p, &n);
 
+    if (p < 0 || p > 31 || p + n > 31 || n < 0 || n > 31) {
+        printf("Greska!");
+        exit(0);
+    }
+
     print_bits(x);
     print_bits(get_bits(x, p, n));
 
@@ -34,8 +39,8 @@ unsigned get_bits(int x, int p, int n) {
     unsigned i = x;
     i = i>>p;
     i = i << p;
-    i = i << (sizeof (int)*8 - p - n);
-    i = i >> (sizeof (int)*8 - p - n);
+    i = i << (sizeof (unsigned)*8 - (unsigned) p - (unsigned) n);
+    i = i >> (sizeof (unsigned)*8 - (unsigned) p - (unsigned) n);
 
     return i;
 }
