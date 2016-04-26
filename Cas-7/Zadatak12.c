@@ -19,7 +19,6 @@ int poredi3(const void* a, const void* b);
 int main(int argc, char** argv) {
 
     int i = 0, j;
-    char c;
     STUDENT niz[MAX], x;
     STUDENT *k;
 
