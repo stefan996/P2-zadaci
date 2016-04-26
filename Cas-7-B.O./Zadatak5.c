@@ -1,14 +1,14 @@
 #include <stdio.h>
 #include<stdlib.h>
 
-void print_bits(unsigned n);
-unsigned get_bits(unsigned x, unsigned p, unsigned n);
+void print_bits(int n);
+unsigned get_bits(int x, int p, int n);
 
 int main() {
-    unsigned n, x, p;
+    int n, x, p;
 
     printf("Unesi x, p, n:\n");
-    scanf("%u%u%u", &x, &p, &n);
+    scanf("%d%d%d", &x, &p, &n);
 
     print_bits(x);
     print_bits(get_bits(x, p, n));
@@ -16,7 +16,7 @@ int main() {
     return 0;
 }
 
-void print_bits(unsigned n) {
+void print_bits(int n) {
     unsigned i = 1 << (sizeof (int)*8 - 1);
 
     while (i) {
@@ -30,11 +30,12 @@ void print_bits(unsigned n) {
     putchar('\n');
 }
 
-unsigned get_bits(unsigned x, unsigned p, unsigned n) {
-    x = x>>p;
-    x = x << p;
-    x = x << (sizeof (int)*8 - p - n);
-    x = x >> (sizeof (int)*8 - p - n);
+unsigned get_bits(int x, int p, int n) {
+    unsigned i = x;
+    i = i>>p;
+    i = i << p;
+    i = i << (sizeof (int)*8 - p - n);
+    i = i >> (sizeof (int)*8 - p - n);
 
-    return x;
+    return i;
 }
