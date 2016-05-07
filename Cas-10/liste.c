@@ -1,0 +1,105 @@
+#include "liste.h"
+#include <stdio.h>
+
+_cvor* novi_cvor(int broj) {
+    _cvor* a = (_cvor*) malloc(sizeof (_cvor));
+
+    if (a == NULL) {
+        printf("Greska!");
+        exit(0);
+    }
+
+    a->vrednost = broj;
+    a->sledeci = NULL;
+
+    return a;
+}
+
+_cvor* dodaj_na_pocetak(_cvor* glava, int br) {
+    _cvor* a = novi_cvor(br);
+    a->sledeci = glava;
+
+    return a;
+}
+
+void dodaj_na_pocetak2(_cvor** adresa_glave, int br) {
+    _cvor* a = novi_cvor(br);
+
+    a->sledeci = *adresa_glave;
+    *adresa_glave = a;
+}
+
+void ispis_liste2(_cvor* glava, FILE* f) {
+    while (glava != NULL) {
+        fprintf(f, "%d ", glava->vrednost);
+        glava = glava->sledeci;
+    }
+}
+
+void ispis_liste(_cvor* glava, FILE* f) {
+    if (glava == NULL)
+        return;
+    else {
+        fprintf(f, "%d ", glava->vrednost);
+        ispis_liste(glava->sledeci, f);
+    }
+}
+
+void oslobodi2(_cvor* lista) {
+    _cvor* pom;
+    while (lista != NULL) {
+        pom = lista;
+        free(lista);
+        lista = pom->sledeci;
+    }
+}
+
+void oslobodi(_cvor* lista) {
+    if (lista == NULL)
+        return;
+    oslobodi2(lista->sledeci);
+    free(lista);
+}
+
+_cvor* dodaj_na_kraj2(_cvor* lista, int br) {
+    _cvor* prvi = lista, *n;
+    n = novi_cvor(br);
+
+    if (lista == NULL)
+        return n;
+
+    while (lista->sledeci != NULL) {
+        lista = lista->sledeci;
+    }
+    lista->sledeci = n;
+
+    return prvi;
+}
+
+_cvor* dodaj_na_kraj(_cvor* lista, int br) {
+
+    if (lista == NULL) {
+        _cvor *n = novi_cvor(br);
+        return n;
+    } else {
+        lista->sledeci = dodaj_na_kraj(lista->sledeci, br);
+        return lista;
+    }
+
+}
+
+void dodaj_na_kraj3(_cvor** lista, int br) {
+    _cvor* prvi = *lista, *n;
+    n = novi_cvor(br);
+
+    if (*lista == NULL)
+        *lista = n;
+    else {
+        while ((*lista)->sledeci != NULL) {
+            *lista = (*lista)->sledeci;
+        }
+        (*lista)->sledeci = n;
+        (*lista) = prvi;
+    }
+}
+
