@@ -1,5 +1,5 @@
 //Zadaci sa sajta: http://www.prog2-i-smer.matf.bg.ac.rs/vezbe.html
-//Cas 7 Bitovski operatori
+//Cas 8
 
 //ZADATAK 1
 /*
