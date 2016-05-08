@@ -26,6 +26,10 @@
     _cvor* dodaj_na_kraj2(_cvor* lista, int br);
     _cvor* dodaj_na_kraj(_cvor* lista, int br);
     void dodaj_na_kraj3(_cvor** lista, int br);
+    _cvor* napravi_listu2(FILE* f);
+    _cvor* napravi_listu(FILE* f);
+    _cvor* napravi_obrnutu_listu2(FILE* f);
+    _cvor* napravi_obrnutu_listu(FILE* f);
 
     #endif*/
 
@@ -134,6 +138,47 @@
             (*lista)->sledeci = n;
             (*lista) = prvi;
         }
+    }
+
+    _cvor* napravi_listu2(FILE* f) {
+        int br;
+        _cvor* n = NULL;
+
+        while (fscanf(f, "%d", &br) != EOF)
+            n = dodaj_na_kraj(n, br);
+
+        return n;
+    }
+
+    //proveriti da li moze ovako(radi dobro)
+
+    _cvor* napravi_listu(FILE* f) {
+        int br;
+        _cvor * a = NULL;
+
+        if (fscanf(f, "%d", &br) == EOF)
+            return a;
+        else
+            return dodaj_na_pocetak(napravi_listu(f), br);
+    }
+
+    _cvor* napravi_obrnutu_listu2(FILE* f) {
+        int br;
+        _cvor* n = NULL;
+
+        while (fscanf(f, "%d", &br) != EOF)
+            n = dodaj_na_pocetak(n, br);
+
+        return n;
+    }
+
+    _cvor* napravi_obrnutu_listu(FILE* f) {
+        int br;
+        _cvor* a = NULL;
+        if (fscanf(f, "%d", &br) == EOF)
+            return a;
+        else
+            return dodaj_na_kraj(napravi_obrnutu_listu(f), br);
     }*/
 
 
