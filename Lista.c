@@ -11,7 +11,7 @@
     #include <stdlib.h>
     #include <stdio.h>
 
-    typedef struct cvor {
+    typedef struct _cvor {
         int vrednost;
         struct _cvor* sledeci;
     } _cvor;
