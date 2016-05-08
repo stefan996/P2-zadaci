@@ -19,5 +19,9 @@ void oslobodi(_cvor* lista);
 _cvor* dodaj_na_kraj2(_cvor* lista, int br);
 _cvor* dodaj_na_kraj(_cvor* lista, int br);
 void dodaj_na_kraj3(_cvor** lista, int br);
+_cvor* napravi_listu2(FILE* f);
+_cvor* napravi_listu(FILE* f);
+_cvor* napravi_obrnutu_listu2(FILE* f);
+_cvor* napravi_obrnutu_listu(FILE* f);
 
 #endif
