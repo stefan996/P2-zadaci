@@ -16,6 +16,11 @@ int main(int argc, char** argv) {
         exit(0);
     }
 
+    if (argc != 2) {
+        printf("Greska!");
+        exit(0);
+    }
+
     if (strcmp(argv[1], "stdin") == 0)
         lista = napravi_listu(stdin);
 
