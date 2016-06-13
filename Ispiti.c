@@ -37,7 +37,7 @@ int main(int argc, char** argv) {
 
     return 0;
 }
-*/
+ */
 
 //ZADATAK 2
 /*
@@ -282,4 +282,264 @@ int f5(_cvor* s) {
     } else {
         return s->vrednost - l - d;
     }
+}*/
+
+//Jun1 2015
+//Prva grupa
+
+//ZADATAK 1
+/*
+#include <stdio.h>
+#include<stdlib.h>
+
+int main(int argc, char** argv) {
+    float s1, v1, s2, v2;
+
+    if (argc != 5) {
+        printf("-1\n");
+        exit(0);
+    }
+
+    s1 = atof(argv[1]);
+    v1 = atof(argv[2]);
+    s2 = atof(argv[3]);
+    v2 = atof(argv[4]);
+
+    printf("%d\n", ((int) (s2 / s1)*(int) (v2 / v1)));
+    return 0;
+}*/
+
+//ZADATAK 2
+/*
+#include <stdio.h>
+#include<stdlib.h>
+#include<math.h>
+
+typedef struct {
+    float Ax, Ay, Bx, By, duz;
+} duzi;
+
+int poredi(const void* a, const void* b);
+
+int main(int argc, char** argv) {
+    FILE* f = fopen("duzi.txt", "r");
+    int n, i = 0;
+    duzi *d;
+
+    if (f == NULL) {
+        printf("-1\n");
+        return 0;
+    }
+
+    fscanf(f, "%d", &n);
+
+    d = malloc(n * sizeof (duzi));
+    if (d == NULL) {
+        printf("-1\n");
+        exit(0);
+    }
+
+    while (fscanf(f, "%f%f%f%f", &d[i].Ax, &d[i].Ay, &d[i].Bx, &d[i].By) != EOF)
+        i++;
+
+    for (i = 0; i < n; i++)
+        d[i].duz = sqrt((d[i].Ax - d[i].Bx)*(d[i].Ax - d[i].Bx)+(d[i].Ay - d[i].By)*(d[i].Ay - d[i].By));
+
+    qsort(d, n, sizeof (duzi), poredi);
+
+    for (i = 0; i < n; i++)
+        printf("%.2f %.2f %.2f %.2f %.2f\n", d[i].Ax, d[i].Ay, d[i].Bx, d[i].By, d[i].duz);
+
+
+    return 0;
+}
+
+int poredi(const void* a, const void* b) {
+    return ((duzi*) b)->duz - ((duzi*) a)->duz;
+}*/
+
+//ZADATAK 3
+/*
+#include <stdio.h>
+#include <stdlib.h>
+#include <math.h>
+#include <string.h>
+
+#define MAX_BR 32
+
+unsigned inv(int niz[MAX_BR], int n);
+
+int main(int argc, char** argv) {
+    int i, n, niz[MAX_BR];
+    unsigned x;
+
+    printf("Uneti n:\n");
+    scanf("%d", &n);
+
+    if (n > 32) {
+        printf("-1\n");
+        exit(0);
+    }
+
+    printf("Uneti n brojeva:\n");
+    for (i = 0; i < n; i++)
+        scanf("%d", &niz[i]);
+
+    printf("%u\n", inv(niz, n));
+    return 0;
+}
+
+unsigned inv(int niz[MAX_BR], int n) {
+    unsigned x = 0, mask = 1;
+    int i;
+
+    for (i = n - 1; i >= 0; i--) {
+        x |= (mask & ((niz[i] >> i)));
+        x <<= 1;
+    }
+    return x >> 1;
+}*/
+
+//ZADATAK 4
+/*
+#include <stdio.h>
+#include "/home/luka/Desktop/Vezbanje/liste.h"
+#include <string.h>
+
+void f4(_cvor* lista, _cvor* prvi);
+int zbir(_cvor* lista, _cvor* pokazivac);
+
+int main(int argc, char** argv) {
+
+    if (argc != 2) {
+        printf("Greska!");
+        exit(0);
+    }
+
+    int n;
+    _cvor* lista = NULL;
+    FILE* f = fopen(argv[1], "r");
+    FILE* k = fopen("/home/luka/Desktop/Vezbanje/izlaz.txt", "w");
+
+    if (k == NULL || f == NULL) {
+        printf("Greska u otvaranju datoteke.");
+        exit(0);
+    }
+
+    lista = napravi_listu(f);
+
+    f4(lista, lista);
+
+    ispis_liste(lista, k);
+
+    oslobodi(lista);
+    fclose(f);
+    fclose(k);
+
+    return 0;
+}
+
+void f4(_cvor* lista, _cvor* prvi) {
+    _cvor* pom;
+    int i;
+    if (lista == NULL)
+        return;
+    if (lista->sledeci == NULL)
+        return;
+    if (lista->sledeci->vrednost < zbir(prvi, lista->sledeci))
+        i = 1;
+    else
+        i = 0;
+    f4(lista->sledeci, prvi);
+    if (i == 1) {
+        pom = lista->sledeci;
+        lista->sledeci = lista->sledeci->sledeci;
+        free(pom);
+    }
+}
+
+int zbir(_cvor* lista, _cvor* pokazivac) {
+    int s = 0;
+    if (lista == NULL)
+        return 0;
+    for (; lista != pokazivac;) {
+        s += lista->vrednost;
+        lista = lista->sledeci;
+    }
+
+    return s;
+}*/
+
+//ZADATAK 5
+/*
+#include <stdio.h>
+#include "/home/luka/Desktop/Vezbanje/stabla.h"
+#include <string.h>
+#include <stdlib.h>
+
+int identicna(_cvor* stablo1, _cvor* stablo2);
+void izmeni(_cvor* stablo1, _cvor* stablo2);
+
+int main(int argc, char** argv) {
+
+    if (argc != 3) {
+        printf("Greska!");
+        exit(0);
+    }
+
+    int i;
+    _cvor* stablo1 = NULL, *stablo2 = NULL;
+
+    FILE* f = fopen(argv[1], "r");
+    FILE* k = fopen(argv[2], "r");
+    FILE* g = fopen("/home/luka/Desktop/Vezbanje/izlaz.txt", "w");
+
+    if (g == NULL || f == NULL || k == NULL) {
+        printf("Greska u otvaranju datoteke.");
+        exit(0);
+    }
+
+    stablo1 = unos(f);
+    stablo2 = unos(k);
+
+    if (identicna(stablo1, stablo2)) {
+        izmeni(stablo1, stablo2);
+        ispis(stablo1, g);
+    } else
+        printf("-1\n");
+
+
+    oslobodi(stablo1);
+    oslobodi(stablo2);
+    fclose(f);
+    fclose(g);
+    fclose(k);
+
+    return 0;
+}
+
+void izmeni(_cvor* stablo1, _cvor* stablo2) {
+    if (stablo1 == NULL && stablo2 == NULL)
+        return;
+    izmeni(stablo1->levo, stablo2->levo);
+    izmeni(stablo1->desno, stablo2->desno);
+
+    stablo1->vrednost += stablo2->vrednost;
+
+}
+
+int identicna(_cvor* stablo1, _cvor* stablo2) {
+    int l, d;
+    if (stablo1 == NULL && stablo2 == NULL)
+        return 1;
+    else if (stablo1 != NULL && stablo2 == NULL)
+        return 0;
+    else if (stablo1 == NULL && stablo2 != NULL)
+        return 0;
+    l = identicna(stablo1->levo, stablo2->levo);
+    d = identicna(stablo1->desno, stablo2->desno);
+    if (l == 1 && d == 1)
+        return 1;
+    else
+        return 0;
 }*/
