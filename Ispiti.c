@@ -37,7 +37,7 @@ int main(int argc, char** argv) {
 
     return 0;
 }
- */
+*/
 
 //ZADATAK 2
 /*
@@ -89,14 +89,14 @@ int main(int argc, char** argv) {
 
 void sort(polinom* p, int br_pol) {
     int i, j;
-    float pom;
+    polinom pom;
     char s[MAX_KAR];
     for (i = 1; i < br_pol; i++)
         for (j = 0; j < br_pol - 1; j++) {
             if (p[j].br_koef < p[j + 1].br_koef) {
-                pom = p[j].br_koef;
-                p[j].br_koef = p[j + 1].br_koef;
-                p[j + 1].br_koef = pom;
+                pom = p[j];
+                p[j] = p[j + 1];
+                p[j + 1] = pom;
             } else if (p[j].br_koef == p[j + 1].br_koef) {
                 if (strlen(p[j].ime) < strlen(p[j + 1].ime)) {
                     strcpy(s, p[j].ime);
@@ -543,3 +543,34 @@ int identicna(_cvor* stablo1, _cvor* stablo2) {
     else
         return 0;
 }*/
+
+//Januar 2016
+
+//ZADATAK 1
+/*
+#include<stdio.h>
+#include<stdlib.h>
+
+int main(int argc, char** argv) {
+    int i, k;
+
+    k = atoi(argv[1]);
+
+    if (k == 0) {
+        printf("-1\n");
+        exit(0);
+    }
+
+    for (i = k + 1; i < argc; i += k)
+        printf("%s ", argv[i]);
+
+    return 0;
+}*/
+
+//ZADATAK 2
+
+//ZADATAK 3
+
+//ZADATAK 4
+
+//ZADATAK 5
