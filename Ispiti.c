@@ -568,6 +568,70 @@ int main(int argc, char** argv) {
 }*/
 
 //ZADATAK 2
+/*
+#include <stdio.h>
+#include <stdlib.h>
+#include <math.h>
+#include <string.h>
+#include <ctype.h>
+
+#define MAX_KAR 101
+
+int poredi(const void* a, const void* b);
+
+int main(int argc, char** argv) {
+    int i = 0, d, j;
+    FILE* f = fopen("recenice.txt", "r");
+    char s[MAX_KAR], **pom = NULL, **niz = NULL, *pom1 = NULL;
+
+    if (f == NULL) {
+        printf("Greska u otvaranju datoteke!\n");
+        exit(0);
+    }
+
+    while (fgets(s, MAX_KAR, f) != NULL) {
+        d = strlen(s);
+        if (isupper(s[0]) && islower(s[1]) && (s[d - 2] == '.' || s[d - 2] == '!' || s[d - 2] == '?') && islower(s[d - 3])) {
+            pom = (char**) realloc(niz, (i + 1) * sizeof (char*));
+            if (pom == NULL) {
+                printf("Greska pri alokaciji!\n");
+                for (j = 0; j < i; j++)
+                    free(niz[j]);
+                free(niz);
+                exit(0);
+            } else niz = pom;
+
+            pom1 = (char*) malloc(MAX_KAR * sizeof (char));
+            if (pom1 == NULL) {
+                printf("Greska pri alokaciji!\n");
+                for (j = 0; j < i; j++)
+                    free(niz[j]);
+                free(niz);
+                exit(0);
+            } else niz[i] = pom1;
+            strcpy(niz[i], s);
+            i++;
+        }
+    }
+
+    qsort(niz, i, sizeof (char*), poredi);
+
+    for (j = 0; j < i; j++)
+        printf("%s", niz[j]);
+
+    for (j = 0; j < i; j++)
+        free(niz[j]);
+    free(niz);
+
+    fclose(f);
+
+    return 0;
+}
+
+int poredi(const void* a, const void* b) {
+
+    return strcmp(*(char**) a, *(char**) b);
+}*/
 
 //ZADATAK 3
 
