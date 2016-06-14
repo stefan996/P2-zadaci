@@ -678,7 +678,7 @@ void obrni(_cvor* lista) {
         _cvor *j;
         int pom, pom1, d, i, p, k;
         d = p = duzina(lista);
-        for (i = 0; i <= d; i++) {
+        for (i = 0; i < d; i++) {
             p--;
             for (j = lista, k = 0; k < p && j->sledeci != NULL; j = j->sledeci, k++) {
                 pom = j->sledeci->vrednost;
