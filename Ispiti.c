@@ -876,6 +876,90 @@ int ima(char* s,char c){
 
 //ZADATAK 2
 
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+#define MAX_KAR 50
+#define MAX_SATI 24
+
+typedef struct {
+    int h, m;
+    char ime[MAX_KAR];
+} filmovi;
+
+int poredi(const void* a, const void* b);
+
+int main(int argc, char** argv) {
+    FILE *f = fopen("bioskop.txt", "r");
+    filmovi *niz = NULL, *pom = NULL;
+    int i = 0, j, max_niz[MAX_SATI], max, ind_max;
+    char c;
+
+    if (f == NULL) {
+        printf("-1\n");
+        exit(0);
+    }
+
+    niz = (filmovi*) malloc(sizeof (filmovi));
+    if (niz == NULL) {
+        printf("-1\n");
+        exit(0);
+    }
+
+    while (fscanf(f, "%s%d%c%d", niz[i].ime, &niz[i].h, &c, &niz[i].m) != EOF) {
+        i++;
+        pom = (filmovi*) realloc(niz, (i + 1) * sizeof (filmovi));
+        if (pom == NULL) {
+            printf("-1\n");
+            free(niz);
+            exit(0);
+        } else niz = pom;
+    }
+
+    if (i == 0) {
+        printf("-1\n");
+        free(niz);
+        exit(0);
+    }
+
+    qsort(niz, i, sizeof (filmovi), poredi);
+
+    for (j = 0; j < 24; j++)
+        max_niz[j] = 0;
+
+    for (j = 0; j < i; j++)
+        max_niz[niz[j].h]++;
+
+    max = max_niz[0];
+    ind_max = 0;
+    for (j = 0; j < 24; j++)
+        if (max_niz[j] > max) {
+            max = max_niz[j];
+            ind_max = j;
+        }
+
+    for (j = 0; j < i; j++)
+        printf("%s\n", niz[j].ime);
+
+    printf("%d:00\n", ind_max);
+
+    free(niz);
+    fclose(f);
+    return 0;
+}
+
+int poredi(const void* a, const void* b) {
+    filmovi* n = (filmovi*) a;
+    filmovi* m = (filmovi*) b;
+
+    if (n->h == m->h)
+        return m->m - n->m;
+    else
+        return m->h - n->h;
+}
+
+
 //ZADATAK 3
 
 //ZADATAK 4
