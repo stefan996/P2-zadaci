@@ -3,7 +3,7 @@
 //Oktobar 2015
 
 //ZADATAK 1
-/*
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
@@ -37,10 +37,10 @@ int main(int argc, char** argv) {
 
     return 0;
 }
-*/
+
 
 //ZADATAK 2
-/*
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
@@ -105,10 +105,10 @@ void sort(polinom* p, int br_pol) {
                 }
             }
         }
-}*/
+}
 
 //ZADATAK 3
-/*
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
@@ -147,10 +147,10 @@ unsigned inv(int niz[MAX_BR], int n) {
         x <<= 1;
     }
     return x >> 1;
-}*/
+}
 
 //ZADATAK 4
-/*
+
 #include <stdio.h>
 #include "/home/luka/Desktop/Vezbanje/liste.h"
 #include <string.h>
@@ -224,10 +224,10 @@ int zbir_cifara(int n) {
     }
 
     return rez;
-}*/
+}
 
 //ZADATAK 5
-/*
+
 #include <stdio.h>
 #include "/home/luka/Desktop/Vezbanje/stabla.h"
 #include <string.h>
@@ -282,13 +282,13 @@ int f5(_cvor* s) {
     } else {
         return s->vrednost - l - d;
     }
-}*/
+}
 
 //Jun1 2015
 //Prva grupa
 
 //ZADATAK 1
-/*
+
 #include <stdio.h>
 #include<stdlib.h>
 
@@ -307,10 +307,10 @@ int main(int argc, char** argv) {
 
     printf("%d\n", ((int) (s2 / s1)*(int) (v2 / v1)));
     return 0;
-}*/
+}
 
 //ZADATAK 2
-/*
+
 #include <stdio.h>
 #include<stdlib.h>
 #include<math.h>
@@ -356,10 +356,10 @@ int main(int argc, char** argv) {
 
 int poredi(const void* a, const void* b) {
     return ((duzi*) b)->duz - ((duzi*) a)->duz;
-}*/
+}
 
 //ZADATAK 3
-/*
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
@@ -398,10 +398,10 @@ unsigned inv(int niz[MAX_BR], int n) {
         x <<= 1;
     }
     return x >> 1;
-}*/
+}
 
 //ZADATAK 4
-/*
+
 #include <stdio.h>
 #include "/home/luka/Desktop/Vezbanje/liste.h"
 #include <string.h>
@@ -468,10 +468,10 @@ int zbir(_cvor* lista, _cvor* pokazivac) {
     }
 
     return s;
-}*/
+}
 
 //ZADATAK 5
-/*
+
 #include <stdio.h>
 #include "/home/luka/Desktop/Vezbanje/stabla.h"
 #include <string.h>
@@ -542,12 +542,12 @@ int identicna(_cvor* stablo1, _cvor* stablo2) {
         return 1;
     else
         return 0;
-}*/
+}
 
 //Januar 2016
 
 //ZADATAK 1
-/*
+
 #include<stdio.h>
 #include<stdlib.h>
 
@@ -565,10 +565,10 @@ int main(int argc, char** argv) {
         printf("%s ", argv[i]);
 
     return 0;
-}*/
+}
 
 //ZADATAK 2
-/*
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
@@ -631,7 +631,7 @@ int main(int argc, char** argv) {
 int poredi(const void* a, const void* b) {
 
     return strcmp(*(char**) a, *(char**) b);
-}*/
+}
 
 //ZADATAK 3
 
