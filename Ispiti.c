@@ -758,3 +758,68 @@ int duzina(_cvor* lista) {
 }
 
 //ZADATAK 5
+
+#include <stdio.h>
+#include "/home/luka/Desktop/Vezbanje/stabla.h"
+#include <string.h>
+#include <stdlib.h>
+
+void f5(_cvor* s);
+int zbir(_cvor* s);
+
+int main(int argc, char** argv) {
+
+    if (argc != 2) {
+        printf("Greska!");
+        exit(0);
+    }
+
+    int i, k;
+    _cvor* stablo = NULL;
+
+    FILE* f = fopen(argv[1], "r");
+    FILE* g = fopen("/home/luka/Desktop/Vezbanje/izlaz.txt", "w");
+
+    if (g == NULL || f == NULL) {
+        printf("Greska u otvaranju datoteke.");
+        exit(0);
+    }
+
+    stablo = unos(f);
+
+    f5(stablo);
+    //ispis(stablo, g);
+
+    oslobodi(stablo);
+    fclose(f);
+    fclose(g);
+
+    return 0;
+}
+
+void f5(_cvor* s) {
+    int i;
+    if (s == NULL)
+        return;
+    if (s->desno != NULL) {
+        if (zbir(s->levo) < s->desno->vrednost)
+            i = 1;
+        else
+            i = 0;
+    } else i = 0;
+    f5(s->levo);
+    if (i == 1)
+        printf("%d ", s->vrednost);
+    f5(s->desno);
+
+}
+
+int zbir(_cvor* s) {
+    int l, d;
+    if (s == NULL)
+        return 0;
+    l = zbir(s->levo);
+    d = zbir(s->desno);
+
+    return l + d + s->vrednost;
+}
