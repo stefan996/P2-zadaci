@@ -962,6 +962,61 @@ int poredi(const void* a, const void* b) {
 
 //ZADATAK 3
 
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+#define MAX_KAR 9
+
+char heksa(int br);
+void napravi(char s[MAX_KAR], int x);
+
+int main(int argc, char** argv) {
+    char s[MAX_KAR];
+    int x;
+
+    printf("Uneti x:\n");
+    scanf("%d", &x);
+
+    napravi(s, x);
+
+    printf("%s\n", s);
+
+    return 0;
+}
+
+void napravi(char s[MAX_KAR], int x) {
+    unsigned mask = 15;
+    int n, i, k = 7;
+    for (i = 0; i < 8; i++) {
+        n = mask&x;
+        s[k] = heksa(n);
+        k--;
+        x >>= 4;
+    }
+}
+
+char heksa(int br) {
+    switch (br) {
+        case 0: return '0';
+        case 1: return '1';
+        case 2: return '2';
+        case 3: return '3';
+        case 4: return '4';
+        case 5: return '5';
+        case 6: return '6';
+        case 7: return '7';
+        case 8: return '8';
+        case 9: return '9';
+        case 10: return 'A';
+        case 11: return 'B';
+        case 12: return 'C';
+        case 13: return 'D';
+        case 14: return 'E';
+        case 15: return 'F';
+    }
+}
+
 //ZADATAK 4
 
 //ZADATAK 5
