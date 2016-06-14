@@ -637,4 +637,66 @@ int poredi(const void* a, const void* b) {
 
 //ZADATAK 4
 
+#include <stdio.h>
+#include "/home/luka/Desktop/Vezbanje/liste.h"
+#include <string.h>
+
+void obrni(_cvor* lista);
+int duzina(_cvor* lista);
+
+int main(int argc, char** argv) {
+
+    if (argc != 2) {
+        printf("Greska!");
+        exit(0);
+    }
+
+    int n;
+    _cvor* lista = NULL;
+    FILE* f = fopen(argv[1], "r");
+    FILE* k = fopen("/home/luka/Desktop/Vezbanje/izlaz.txt", "w");
+
+    if (k == NULL || f == NULL) {
+        printf("Greska u otvaranju datoteke.");
+        exit(0);
+    }
+
+    lista = napravi_listu(f);
+
+    obrni(lista);
+    ispis_liste(lista, k);
+
+    oslobodi(lista);
+    fclose(f);
+    fclose(k);
+
+    return 0;
+}
+
+void obrni(_cvor* lista) {
+    if (lista != NULL) {
+        _cvor *j;
+        int pom, pom1, d, i, p, k;
+        d = p = duzina(lista);
+        for (i = 0; i <= d; i++) {
+            p--;
+            for (j = lista, k = 0; k < p && j->sledeci != NULL; j = j->sledeci, k++) {
+                pom = j->sledeci->vrednost;
+                j->sledeci->vrednost = j->vrednost;
+                j->vrednost = pom;
+            }
+        }
+    }
+}
+
+int duzina(_cvor* lista) {
+    int i;
+    if (lista == NULL)
+        return 0;
+    for (i = 0; lista != NULL; i++)
+        lista = lista->sledeci;
+
+    return i;
+}
+
 //ZADATAK 5
