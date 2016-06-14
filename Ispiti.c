@@ -823,3 +823,62 @@ int zbir(_cvor* s) {
 
     return l + d + s->vrednost;
 }
+
+//Septembar 2015
+
+//ZADATAK 1
+
+#include<stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+int ima(char* s,char c);
+
+int main(int argc,char** argv){
+  int i,br,d;
+  char c;
+
+  if(argc!=4){
+    printf("-1\n");
+    exit(0);
+  }
+
+  c=argv[2][0];
+
+  br=atoi(argv[3]);
+
+  if(ima(argv[1],c)){
+    d=strlen(argv[1]);
+    for(i=0;i<d;i++)
+      if(argv[1][i]==c){
+        for(i=i+1;argv[1][i]!=c;i++)
+          argv[1][i]+=br;
+        break;
+      }
+    printf("%s\n",argv[1]);
+  }else
+    printf("%s\n",argv[1]);
+
+  return 0;
+}
+
+int ima(char* s,char c){
+  int i,d,br=0;
+  d=strlen(s);
+  for(i=0;i<d;i++)
+    if(c==s[i]){
+      br++;
+      if(br>1)
+        return 1;
+    }
+  return 0;
+}
+
+//ZADATAK 2
+
+//ZADATAK 3
+
+//ZADATAK 4
+
+//ZADATAK 5
+
