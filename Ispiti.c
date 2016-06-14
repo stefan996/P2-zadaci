@@ -635,6 +635,64 @@ int poredi(const void* a, const void* b) {
 
 //ZADATAK 3
 
+#include <stdio.h>
+#include <stdlib.h>
+
+void obradi(unsigned x, unsigned n, unsigned *niz);
+int broj_jedinica(unsigned x);
+
+int main(int argc, char** argv) {
+
+    int x, n, i;
+    unsigned *niz;
+
+    printf("Uneti x i n:\n");
+    scanf("%d%d", &x, &n);
+
+    if (x < 0 || n < 0) {
+        printf("-1\n");
+        exit(0);
+    }
+
+    niz = (unsigned*) malloc(n * sizeof (unsigned));
+
+    printf("Uneti n brojeva:\n");
+    for (i = 0; i < n; i++)
+        scanf("%u", &niz[i]);
+
+    obradi(x, n, niz);
+
+    for (i = 0; i < n; i++)
+        printf("%d ", niz[i]);
+
+    return 0;
+}
+
+void obradi(unsigned x, unsigned n, unsigned *niz) {
+    int bj_b, bj_x, i;
+    unsigned j = 1;
+    bj_x = broj_jedinica(x);
+    for (i = 0; i < n; i++) {
+        bj_b = broj_jedinica(niz[i]);
+        if (bj_b > bj_x)
+            niz[i] = (~(j << i))&(niz[i]);
+        else
+            niz[i] = (1 << i) | niz[i];
+    }
+}
+
+int broj_jedinica(unsigned x) {
+    int s = 0, i, d;
+    d = sizeof (unsigned)*8;
+    while (x) {
+        if (x & 1)
+            s++;
+        x >>= 1;
+    }
+
+    return s;
+}
+
 //ZADATAK 4
 
 #include <stdio.h>
