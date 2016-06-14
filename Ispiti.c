@@ -676,11 +676,11 @@ int main(int argc, char** argv) {
 void obrni(_cvor* lista) {
     if (lista != NULL) {
         _cvor *j;
-        int pom, pom1, d, i, p, k;
+        int pom, d, i, p, k;
         d = p = duzina(lista);
         for (i = 0; i < d; i++) {
             p--;
-            for (j = lista, k = 0; k < p && j->sledeci != NULL; j = j->sledeci, k++) {
+            for (j = lista, k = 0; k < p ; j = j->sledeci, k++) {
                 pom = j->sledeci->vrednost;
                 j->sledeci->vrednost = j->vrednost;
                 j->vrednost = pom;
